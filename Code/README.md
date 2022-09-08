@@ -4,4 +4,4 @@ Mi Hackathon Project for Vendor Payment System
 
 ### Global Elements
 - **globalElement.dart**
-    - ```background color (white)```  
+    - background color (white) `#0969DA`  

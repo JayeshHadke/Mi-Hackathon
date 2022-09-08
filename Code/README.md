@@ -23,7 +23,7 @@ Mi Hackathon Project for Vendor Payment System
 ## Pages
 ### **globalElement.dart**
 - Background Colors
-    - mainBackgroundColor (white) `#ffffff` 
+    - mainBackgroundColor (light orange) `#e94f1d` 
     - subBackgroundColor (light grey) `#d9d9d9` 
 
 - Text Colors

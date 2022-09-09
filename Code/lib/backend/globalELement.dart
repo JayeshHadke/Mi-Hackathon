@@ -50,12 +50,16 @@ headingText(BuildContext context, String str, double size) {
   );
 }
 
-mainText(BuildContext context, String str, double size) {
+mainText(
+    {required BuildContext context,
+    required String str,
+    double size = 0.04,
+    Color color = Colors.black}) {
   return Text(
     str,
     style: TextStyle(
       fontFamily: 'BalooBhai2',
-      color: mainTextColor,
+      color: color,
       fontWeight: FontWeight.w300,
       fontSize: getHeight(context, size),
     ),

@@ -22,7 +22,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       theme: ThemeData(fontFamily: 'BalooBhai2'),
       debugShowCheckedModeBanner: false,
-      home: SafeArea(
+      home: const SafeArea(
         child: LogIn_SignUp_Page(),
       ),
     );

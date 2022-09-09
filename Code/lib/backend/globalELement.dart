@@ -11,9 +11,9 @@ Color subTextColor = const Color(0xff1F1F1F);
 // Class use to Specify the Screen Width
 // Do not use this class
 class FormFactor {
-  static double desktop = 1200;
-  static double tablet = 400;
-  static double handset = 400;
+  static double desktop = 1000;
+  static double tablet = 600;
+  static double handset = 600;
 }
 
 // Use this method to check and return appropriate widget

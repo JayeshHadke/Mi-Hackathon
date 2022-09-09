@@ -94,7 +94,7 @@ class _Desktop_LogIn_SignUp_PageState extends State<Desktop_LogIn_SignUp_Page> {
                       ),
                       const Icon(Icons.arrow_back_ios_rounded,
                           color: Colors.black),
-                      subText(context, 'Back', 0.03)
+                      subText(context: context, str: 'Back', size: 0.03)
                     ],
                   ),
                 )
@@ -149,7 +149,10 @@ class _Desktop_LogIn_SignUp_PageState extends State<Desktop_LogIn_SignUp_Page> {
                                   keyboardType: TextInputType.emailAddress,
                                   cursorColor: mainBackgroundColor,
                                   decoration: InputDecoration(
-                                    label: subText(context, 'Email Id', 0.02),
+                                    label: subText(
+                                        context: context,
+                                        str: 'Email Id',
+                                        size: 0.02),
                                     enabledBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
                                           color: mainBackgroundColor),
@@ -174,7 +177,10 @@ class _Desktop_LogIn_SignUp_PageState extends State<Desktop_LogIn_SignUp_Page> {
                                   decoration: InputDecoration(
                                     errorText:
                                         wrongPassword ? 'Wrong Password' : null,
-                                    label: subText(context, 'Password', 0.02),
+                                    label: subText(
+                                      context: context,
+                                      str: 'Password',
+                                    ),
                                     enabledBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
                                           color: mainBackgroundColor),
@@ -198,7 +204,8 @@ class _Desktop_LogIn_SignUp_PageState extends State<Desktop_LogIn_SignUp_Page> {
                                     setState(
                                       () {
                                         if (checkUser(userId)) {
-                                          if (checkPassword(userId, password)) {
+                                          if (checkPassword(
+                                              context, userId, password)) {
                                             wrongPassword = false;
                                           } else {
                                             wrongPassword = true;
@@ -258,7 +265,10 @@ class _Desktop_LogIn_SignUp_PageState extends State<Desktop_LogIn_SignUp_Page> {
                                 TextField(
                                   cursorColor: mainBackgroundColor,
                                   decoration: InputDecoration(
-                                    label: subText(context, 'Email Id', 0.02),
+                                    label: subText(
+                                      context: context,
+                                      str: 'Email Id',
+                                    ),
                                     enabledBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
                                           color: mainBackgroundColor),
@@ -280,7 +290,10 @@ class _Desktop_LogIn_SignUp_PageState extends State<Desktop_LogIn_SignUp_Page> {
                                 TextField(
                                   cursorColor: mainBackgroundColor,
                                   decoration: InputDecoration(
-                                    label: subText(context, 'Password', 0.02),
+                                    label: subText(
+                                      context: context,
+                                      str: 'Password',
+                                    ),
                                     enabledBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
                                           color: mainBackgroundColor),
@@ -302,7 +315,10 @@ class _Desktop_LogIn_SignUp_PageState extends State<Desktop_LogIn_SignUp_Page> {
                                 TextField(
                                   cursorColor: mainBackgroundColor,
                                   decoration: InputDecoration(
-                                    label: subText(context, 'Name', 0.02),
+                                    label: subText(
+                                      context: context,
+                                      str: 'Name',
+                                    ),
                                     enabledBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
                                           color: mainBackgroundColor),
@@ -324,7 +340,10 @@ class _Desktop_LogIn_SignUp_PageState extends State<Desktop_LogIn_SignUp_Page> {
                                 TextField(
                                   cursorColor: mainBackgroundColor,
                                   decoration: InputDecoration(
-                                    label: subText(context, 'Store Name', 0.02),
+                                    label: subText(
+                                      context: context,
+                                      str: 'Store Name',
+                                    ),
                                     enabledBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
                                           color: mainBackgroundColor),
@@ -346,7 +365,10 @@ class _Desktop_LogIn_SignUp_PageState extends State<Desktop_LogIn_SignUp_Page> {
                                 TextField(
                                   cursorColor: mainBackgroundColor,
                                   decoration: InputDecoration(
-                                    label: subText(context, 'POS Id', 0.02),
+                                    label: subText(
+                                      context: context,
+                                      str: 'POS Id',
+                                    ),
                                     enabledBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
                                           color: mainBackgroundColor),
@@ -366,6 +388,7 @@ class _Desktop_LogIn_SignUp_PageState extends State<Desktop_LogIn_SignUp_Page> {
                                 ElevatedButton(
                                   onPressed: () {
                                     createUser(
+                                        context: context,
                                         userId: userId,
                                         name: name,
                                         password: password,
@@ -423,8 +446,12 @@ class _Desktop_LogIn_SignUp_PageState extends State<Desktop_LogIn_SignUp_Page> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                subText(context, '      @All CopyRights Reserved', 0.015),
-                subText(context, 'Xiaomi India      ', 0.015),
+                subText(
+                    context: context,
+                    str: '      @All CopyRights Reserved',
+                    size: 0.015),
+                subText(
+                    context: context, str: 'Xiaomi India      ', size: 0.015),
               ],
             ),
           ),

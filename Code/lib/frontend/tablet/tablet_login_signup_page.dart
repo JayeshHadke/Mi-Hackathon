@@ -79,7 +79,7 @@ class _Tablet_LogIn_SignUp_PageState extends State<Tablet_LogIn_SignUp_Page> {
                             color: Colors.black,
                             size: getWidth(context, 0.03),
                           ),
-                          subText(context, 'Back', 0.025)
+                          subText(context: context, str: 'Back', size: 0.025)
                         ],
                       ),
                     )
@@ -121,7 +121,10 @@ class _Tablet_LogIn_SignUp_PageState extends State<Tablet_LogIn_SignUp_Page> {
                             keyboardType: TextInputType.emailAddress,
                             cursorColor: mainBackgroundColor,
                             decoration: InputDecoration(
-                              label: subText(context, 'Email Id', 0.02),
+                              label: subText(
+                                context: context,
+                                str: 'Email Id',
+                              ),
                               enabledBorder: UnderlineInputBorder(
                                 borderSide:
                                     BorderSide(color: mainBackgroundColor),
@@ -145,7 +148,10 @@ class _Tablet_LogIn_SignUp_PageState extends State<Tablet_LogIn_SignUp_Page> {
                             decoration: InputDecoration(
                               errorText:
                                   wrongPassword ? 'Wrong Password' : null,
-                              label: subText(context, 'Password', 0.02),
+                              label: subText(
+                                context: context,
+                                str: 'Password',
+                              ),
                               enabledBorder: UnderlineInputBorder(
                                 borderSide:
                                     BorderSide(color: mainBackgroundColor),
@@ -168,7 +174,8 @@ class _Tablet_LogIn_SignUp_PageState extends State<Tablet_LogIn_SignUp_Page> {
                               setState(
                                 () {
                                   if (checkUser(userId)) {
-                                    if (checkPassword(userId, password)) {
+                                    if (checkPassword(
+                                        context, userId, password)) {
                                       wrongPassword = false;
                                     } else {
                                       wrongPassword = true;
@@ -217,7 +224,10 @@ class _Tablet_LogIn_SignUp_PageState extends State<Tablet_LogIn_SignUp_Page> {
                           TextField(
                             cursorColor: mainBackgroundColor,
                             decoration: InputDecoration(
-                              label: subText(context, 'Email Id', 0.02),
+                              label: subText(
+                                context: context,
+                                str: 'Email Id',
+                              ),
                               enabledBorder: UnderlineInputBorder(
                                 borderSide:
                                     BorderSide(color: mainBackgroundColor),
@@ -240,7 +250,10 @@ class _Tablet_LogIn_SignUp_PageState extends State<Tablet_LogIn_SignUp_Page> {
                           TextField(
                             cursorColor: mainBackgroundColor,
                             decoration: InputDecoration(
-                              label: subText(context, 'Password', 0.02),
+                              label: subText(
+                                context: context,
+                                str: 'Password',
+                              ),
                               enabledBorder: UnderlineInputBorder(
                                 borderSide:
                                     BorderSide(color: mainBackgroundColor),
@@ -261,7 +274,10 @@ class _Tablet_LogIn_SignUp_PageState extends State<Tablet_LogIn_SignUp_Page> {
                           TextField(
                             cursorColor: mainBackgroundColor,
                             decoration: InputDecoration(
-                              label: subText(context, 'Name', 0.02),
+                              label: subText(
+                                context: context,
+                                str: 'Name',
+                              ),
                               enabledBorder: UnderlineInputBorder(
                                 borderSide:
                                     BorderSide(color: mainBackgroundColor),
@@ -282,7 +298,10 @@ class _Tablet_LogIn_SignUp_PageState extends State<Tablet_LogIn_SignUp_Page> {
                           TextField(
                             cursorColor: mainBackgroundColor,
                             decoration: InputDecoration(
-                              label: subText(context, 'Store Name', 0.02),
+                              label: subText(
+                                context: context,
+                                str: 'Store Name',
+                              ),
                               enabledBorder: UnderlineInputBorder(
                                 borderSide:
                                     BorderSide(color: mainBackgroundColor),
@@ -303,7 +322,10 @@ class _Tablet_LogIn_SignUp_PageState extends State<Tablet_LogIn_SignUp_Page> {
                           TextField(
                             cursorColor: mainBackgroundColor,
                             decoration: InputDecoration(
-                              label: subText(context, 'POS Id', 0.02),
+                              label: subText(
+                                context: context,
+                                str: 'POS Id',
+                              ),
                               enabledBorder: UnderlineInputBorder(
                                 borderSide:
                                     BorderSide(color: mainBackgroundColor),
@@ -322,6 +344,7 @@ class _Tablet_LogIn_SignUp_PageState extends State<Tablet_LogIn_SignUp_Page> {
                           ElevatedButton(
                             onPressed: () {
                               createUser(
+                                  context: context,
                                   userId: userId,
                                   name: name,
                                   password: password,
@@ -369,8 +392,14 @@ class _Tablet_LogIn_SignUp_PageState extends State<Tablet_LogIn_SignUp_Page> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    subText(context, '      @All CopyRights Reserved', 0.015),
-                    subText(context, 'Xiaomi India      ', 0.015),
+                    subText(
+                        context: context,
+                        str: '      @All CopyRights Reserved',
+                        size: 0.015),
+                    subText(
+                        context: context,
+                        str: 'Xiaomi India      ',
+                        size: 0.015),
                   ],
                 ),
               ),

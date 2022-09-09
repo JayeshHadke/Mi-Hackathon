@@ -66,7 +66,8 @@ mainText(
   );
 }
 
-subText(BuildContext context, String str, double size) {
+subText(
+    {required BuildContext context, required String str, double size = 0.02}) {
   return Text(
     str,
     style: TextStyle(

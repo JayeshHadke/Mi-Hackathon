@@ -42,14 +42,16 @@ createUser(
     required String password,
     required String posId,
     required String storeName}) {
-  _users.addEntries([
-    MapEntry(
-        userId,
-        _user(
-            name: name,
-            email: userId,
-            password: password,
-            posId: posId,
-            storeName: storeName))
-  ]);
+  _users.addEntries(
+    [
+      MapEntry(
+          userId,
+          _user(
+              name: name,
+              email: userId,
+              password: password,
+              posId: posId,
+              storeName: storeName))
+    ],
+  );
 }

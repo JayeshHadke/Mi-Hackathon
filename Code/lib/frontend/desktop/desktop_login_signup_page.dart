@@ -364,7 +364,14 @@ class _Desktop_LogIn_SignUp_PageState extends State<Desktop_LogIn_SignUp_Page> {
                                   height: getHeight(context, 0.08),
                                 ),
                                 ElevatedButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    createUser(
+                                        userId: userId,
+                                        name: name,
+                                        password: password,
+                                        posId: posId,
+                                        storeName: storeName);
+                                  },
                                   child: mainText(
                                       context: context,
                                       str: 'SignUp',

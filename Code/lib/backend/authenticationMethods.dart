@@ -4,6 +4,7 @@ class _user {
   String password;
   String storeName;
   String posId;
+
   _user(
       {required this.name,
       required this.email,
@@ -33,4 +34,22 @@ checkPassword(String userId, String password) {
     }
   });
   return isValidUser;
+}
+
+createUser(
+    {required String userId,
+    required String name,
+    required String password,
+    required String posId,
+    required String storeName}) {
+  _users.addEntries([
+    MapEntry(
+        userId,
+        _user(
+            name: name,
+            email: userId,
+            password: password,
+            posId: posId,
+            storeName: storeName))
+  ]);
 }

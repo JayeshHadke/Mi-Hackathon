@@ -19,7 +19,10 @@ class FormFactor {
 // Use this method to check and return appropriate widget
 
 createWidget(
-    BuildContext context, Widget desktop, Widget tablet, Widget mobile) {
+    {required BuildContext context,
+    required Widget desktop,
+    required Widget tablet,
+    required Widget mobile}) {
   if (MediaQuery.of(context).size.width > FormFactor.desktop) {
     return desktop;
   }
@@ -77,3 +80,86 @@ subText(
     ),
   );
 }
+
+var itemsType = <String, Map<String, _item>>{
+  'Smart Phones': smartPhonesItems,
+  'TV': accessoriesItems,
+  'Laptop': accessoriesItems,
+  'Smart Home': accessoriesItems,
+  'Accessories': accessoriesItems,
+};
+
+int selectedItemIndex = 0;
+
+class _item {
+  String url;
+  String name;
+  double price;
+  _item({required this.url, required this.name, required this.price});
+}
+
+var smartPhonesItems = <String, _item>{
+  'Mi 11 Lite': _item(
+      url:
+          'https://raw.githubusercontent.com/JayeshHadke/Mi-Hackathon/master/Assets/Mobiles/Mi%2011%20Lite.png',
+      name: 'Mi 11 Lite',
+      price: 000),
+  'Compact Speakers': _item(
+      url:
+          'https://raw.githubusercontent.com/JayeshHadke/Mi-Hackathon/master/Assets/Accessories/Compact%20Speakers.png',
+      name: 'Compact Speakers',
+      price: 000),
+  'Dual Port Charger': _item(
+      url:
+          'https://raw.githubusercontent.com/JayeshHadke/Mi-Hackathon/master/Assets/Accessories/Dual%20Port%20Charger.png',
+      name: 'Dual Port Charger',
+      price: 000),
+  'EarPods': _item(
+      url:
+          'https://raw.githubusercontent.com/JayeshHadke/Mi-Hackathon/master/Assets/Accessories/EarPods.png',
+      name: 'EarPods',
+      price: 000),
+  'Earphones': _item(
+      url:
+          'https://raw.githubusercontent.com/JayeshHadke/Mi-Hackathon/master/Assets/Accessories/Earphones.png',
+      name: 'EarPhones',
+      price: 000),
+  'HeadPhones': _item(
+      url:
+          'https://raw.githubusercontent.com/JayeshHadke/Mi-Hackathon/master/Assets/Accessories/Headphones.png',
+      name: 'HeadPhones',
+      price: 000),
+};
+
+var accessoriesItems = <String, _item>{
+  'Car Charger': _item(
+      url:
+          'https://raw.githubusercontent.com/JayeshHadke/Mi-Hackathon/master/Assets/Accessories/Car%20Charrger.png',
+      name: 'Car Charger',
+      price: 000),
+  'Compact Speakers': _item(
+      url:
+          'https://raw.githubusercontent.com/JayeshHadke/Mi-Hackathon/master/Assets/Accessories/Compact%20Speakers.png',
+      name: 'Compact Speakers',
+      price: 000),
+  'Dual Port Charger': _item(
+      url:
+          'https://raw.githubusercontent.com/JayeshHadke/Mi-Hackathon/master/Assets/Accessories/Dual%20Port%20Charger.png',
+      name: 'Dual Port Charger',
+      price: 000),
+  'EarPods': _item(
+      url:
+          'https://raw.githubusercontent.com/JayeshHadke/Mi-Hackathon/master/Assets/Accessories/EarPods.png',
+      name: 'EarPods',
+      price: 000),
+  'Earphones': _item(
+      url:
+          'https://raw.githubusercontent.com/JayeshHadke/Mi-Hackathon/master/Assets/Accessories/Earphones.png',
+      name: 'EarPhones',
+      price: 000),
+  'HeadPhones': _item(
+      url:
+          'https://raw.githubusercontent.com/JayeshHadke/Mi-Hackathon/master/Assets/Accessories/Headphones.png',
+      name: 'HeadPhones',
+      price: 000),
+};

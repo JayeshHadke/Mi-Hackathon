@@ -15,6 +15,9 @@ class _Home_PageState extends State<Home_Page> {
   @override
   Widget build(BuildContext context) {
     return createWidget(
-        context, Desktop_Home_Page(), Tablet_Home_Page(), Mobile_Home_Page());
+        context: context,
+        desktop: Desktop_Home_Page(),
+        tablet: Tablet_Home_Page(),
+        mobile: Mobile_Home_Page());
   }
 }

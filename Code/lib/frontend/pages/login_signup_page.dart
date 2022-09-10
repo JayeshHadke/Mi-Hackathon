@@ -17,8 +17,11 @@ class _LogIn_SignUp_PageState extends State<LogIn_SignUp_Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: createWidget(context, const Desktop_LogIn_SignUp_Page(),
-          const Tablet_LogIn_SignUp_Page(), const Mobile_LogIn_SignUp_Page()),
+      body: createWidget(
+          context: context,
+          desktop: const Desktop_LogIn_SignUp_Page(),
+          tablet: const Tablet_LogIn_SignUp_Page(),
+          mobile: const Mobile_LogIn_SignUp_Page()),
     );
   }
 }

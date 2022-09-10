@@ -1,9 +1,17 @@
 import 'dart:core';
 import 'dart:core';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:mi_hackathon/backend/authenticationMethods.dart';
 import 'package:mi_hackathon/backend/globalELement.dart';
+import 'package:mi_hackathon/frontend/desktop/drawer_items/desktop_account_page.dart';
+import 'package:mi_hackathon/frontend/desktop/drawer_items/desktop_content_page.dart';
+import 'package:mi_hackathon/frontend/desktop/drawer_items/desktop_orders_page.dart';
+import 'package:mi_hackathon/frontend/pages/drawer_items/account_page.dart';
+import 'package:mi_hackathon/frontend/pages/drawer_items/orders_page.dart';
+
+import '../pages/drawer_items/content_page.dart';
 
 class Desktop_Home_Page extends StatefulWidget {
   const Desktop_Home_Page({Key? key}) : super(key: key);
@@ -28,6 +36,7 @@ class _Desktop_Home_PageState extends State<Desktop_Home_Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         toolbarHeight: getHeight(context, 0.1),
         backgroundColor: subBackgroundColor,
@@ -81,6 +90,7 @@ class _Desktop_Home_PageState extends State<Desktop_Home_Page> {
             ),
             ListTile(
               onTap: () {
+                Navigator.of(context).pop();
                 setState(() {
                   subPage = drawerItems.Home;
                 });
@@ -93,6 +103,7 @@ class _Desktop_Home_PageState extends State<Desktop_Home_Page> {
             ),
             ListTile(
               onTap: () {
+                Navigator.of(context).pop();
                 setState(() {
                   subPage = drawerItems.Orders;
                 });
@@ -105,6 +116,7 @@ class _Desktop_Home_PageState extends State<Desktop_Home_Page> {
             ),
             ListTile(
               onTap: () {
+                Navigator.of(context).pop();
                 setState(() {
                   subPage = drawerItems.Account;
                 });
@@ -116,7 +128,9 @@ class _Desktop_Home_PageState extends State<Desktop_Home_Page> {
               title: mainText(context: context, str: 'Account'),
             ),
             ListTile(
-              onTap: () {},
+              onTap: () {
+                exit(0);
+              },
               selectedTileColor: Colors.grey.shade200,
               selectedColor: mainBackgroundColor,
               leading: const Icon(Icons.exit_to_app_rounded),
@@ -125,40 +139,11 @@ class _Desktop_Home_PageState extends State<Desktop_Home_Page> {
           ],
         ),
       ),
-      // body: Stack(
-      //   children: [
-      //     Positioned(
-      //       top: 0,
-      //       left: 0,
-      //       right: 0,
-      //       height: getHeight(context, 0.12),
-      //       child: Container(
-      //         padding: EdgeInsets.symmetric(
-      //           horizontal: getWidth(context, 0.01),
-      //           vertical: getHeight(context, 0.01),
-      //         ),
-      //         color: subBackgroundColor,
-      //         child: Row(
-      //           children: [
-      //             Image.asset(
-      //               'assets/images/xiaomi_logo_nolabel.png',
-      //             ),
-      //             SizedBox(
-      //               width: getWidth(context, 0.01),
-      //             ),
-      //             Column(
-      //               crossAxisAlignment: CrossAxisAlignment.start,
-      //               children: [
-      //                 mainText(context: context, str: '$name - $posId'),
-      //                 subText(context: context, str: storeName),
-      //               ],
-      //             )
-      //           ],
-      //         ),
-      //       ),
-      //     ),
-      //   ],
-      // ),
+      body: subPage == drawerItems.Home
+          ? Content_Page()
+          : subPage == drawerItems.Orders
+              ? Orders_Page()
+              : Account_Page(),
     );
   }
 }

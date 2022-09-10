@@ -18,13 +18,12 @@ enum drawerItems {
   Account,
 }
 
-var subPage = drawerItems.Home;
-
 class _Desktop_Home_PageState extends State<Desktop_Home_Page> {
   String name = currentUser!.name;
   String email = currentUser!.email;
   String storeName = currentUser!.storeName;
   String posId = currentUser!.posId;
+  drawerItems subPage = drawerItems.Home;
 
   @override
   Widget build(BuildContext context) {
@@ -107,7 +106,7 @@ class _Desktop_Home_PageState extends State<Desktop_Home_Page> {
             ListTile(
               onTap: () {
                 setState(() {
-                  subPage == drawerItems.Account;
+                  subPage = drawerItems.Account;
                 });
               },
               selected: subPage == drawerItems.Account,

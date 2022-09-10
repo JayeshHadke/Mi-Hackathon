@@ -14,9 +14,7 @@ class Home_Page extends StatefulWidget {
 class _Home_PageState extends State<Home_Page> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: createWidget(
-          context, Desktop_Home_Page(), Tablet_Home_Page(), Mobile_Home_Page()),
-    );
+    return createWidget(
+        context, Desktop_Home_Page(), Tablet_Home_Page(), Mobile_Home_Page());
   }
 }

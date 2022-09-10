@@ -1,6 +1,7 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:mi_hackathon/backend/globalELement.dart';
+import 'package:mi_hackathon/frontend/pages/drawer_items/billing_pages/billing_page.dart';
 
 class Desktop_Content_Page extends StatefulWidget {
   const Desktop_Content_Page({Key? key}) : super(key: key);
@@ -49,6 +50,18 @@ class _Desktop_Content_PageState extends State<Desktop_Content_Page> {
               ),
               Row(
                 children: [
+                  IconButton(
+                    onPressed: () {
+                      setState(() {
+                        selectedItemsCount = 0;
+                        selectedItems.clear();
+                      });
+                    },
+                    tooltip: 'Clear',
+                    icon: const Icon(
+                      Icons.clear_all_rounded,
+                    ),
+                  ),
                   Badge(
                     badgeColor: mainBackgroundColor,
                     badgeContent: subText(
@@ -56,7 +69,14 @@ class _Desktop_Content_PageState extends State<Desktop_Content_Page> {
                       str: selectedItemsCount.toString(),
                     ),
                     child: IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Billing_Page(),
+                          ),
+                        );
+                      },
                       icon: const Icon(
                         Icons.shopping_cart_rounded,
                       ),

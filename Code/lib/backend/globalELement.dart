@@ -89,7 +89,7 @@ var itemsType = <String, Map<String, _item>>{
   'Accessories': accessoriesItems,
 };
 
-int selectedItemIndex = 0;
+int selectedItemTypeIndex = 0;
 
 class _item {
   String url;
@@ -163,3 +163,5 @@ var accessoriesItems = <String, _item>{
       name: 'HeadPhones',
       price: 000),
 };
+
+var selectedItems = <_item, int>{};

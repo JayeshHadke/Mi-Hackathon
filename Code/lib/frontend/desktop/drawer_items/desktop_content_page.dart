@@ -1,3 +1,4 @@
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:mi_hackathon/backend/globalELement.dart';
 
@@ -9,6 +10,7 @@ class Desktop_Content_Page extends StatefulWidget {
 }
 
 class _Desktop_Content_PageState extends State<Desktop_Content_Page> {
+  int selectedItemsCount = 0;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -24,7 +26,7 @@ class _Desktop_Content_PageState extends State<Desktop_Content_Page> {
                     width: getWidth(context, 0.06),
                   ),
                   DropdownButton(
-                    value: itemsType.keys.toList()[selectedItemIndex],
+                    value: itemsType.keys.toList()[selectedItemTypeIndex],
                     items: itemsType.keys.toList().map(
                       (String item) {
                         return DropdownMenuItem(
@@ -37,7 +39,7 @@ class _Desktop_Content_PageState extends State<Desktop_Content_Page> {
                     onChanged: (value) {
                       setState(
                         () {
-                          selectedItemIndex =
+                          selectedItemTypeIndex =
                               itemsType.keys.toList().indexOf(value.toString());
                         },
                       );
@@ -47,10 +49,17 @@ class _Desktop_Content_PageState extends State<Desktop_Content_Page> {
               ),
               Row(
                 children: [
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.shopping_cart_rounded,
+                  Badge(
+                    badgeColor: mainBackgroundColor,
+                    badgeContent: subText(
+                      context: context,
+                      str: selectedItemsCount.toString(),
+                    ),
+                    child: IconButton(
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.shopping_cart_rounded,
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -88,7 +97,7 @@ class _Desktop_Content_PageState extends State<Desktop_Content_Page> {
                       scale: 2.5,
                       alignment: Alignment.topCenter,
                       image: NetworkImage(itemsType.values
-                          .toList()[selectedItemIndex]
+                          .toList()[selectedItemTypeIndex]
                           .values
                           .toList()[index]
                           .url),
@@ -101,16 +110,141 @@ class _Desktop_Content_PageState extends State<Desktop_Content_Page> {
                       mainText(
                           context: context,
                           str: itemsType.values
-                              .toList()[selectedItemIndex]
+                              .toList()[selectedItemTypeIndex]
                               .values
-                              .toList()[selectedItemIndex]
+                              .toList()[selectedItemTypeIndex]
                               .name),
-                      mainText(
-                          context: context,
-                          str: accessoriesItems.values
-                              .toList()[index]
-                              .price
-                              .toString()),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          mainText(
+                              context: context,
+                              str: accessoriesItems.values
+                                  .toList()[index]
+                                  .price
+                                  .toString()),
+                          SizedBox(
+                            width: getWidth(context, 0.06),
+                            height: getHeight(context, 0.06),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                SizedBox(
+                                  height: getHeight(context, 0.04),
+                                  width: getWidth(context, 0.014),
+                                  child: TextButton(
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.resolveWith(
+                                        (states) {
+                                          if (states.contains(
+                                              MaterialState.pressed)) {
+                                            return subBackgroundColor;
+                                          }
+                                          return subBackgroundColor;
+                                        },
+                                      ),
+                                    ),
+                                    onPressed: () {
+                                      setState(
+                                        () {
+                                          if (selectedItems.containsKey(
+                                              itemsType.values
+                                                  .toList()[
+                                                      selectedItemTypeIndex]
+                                                  .values
+                                                  .toList()[index])) {
+                                            selectedItems.values.toList()[
+                                                        selectedItems.keys
+                                                            .toList()
+                                                            .indexOf(itemsType
+                                                                    .values
+                                                                    .toList()[
+                                                                        selectedItemTypeIndex]
+                                                                    .values
+                                                                    .toList()[
+                                                                index])] ==
+                                                    1
+                                                ? selectedItems.remove(itemsType
+                                                    .values
+                                                    .toList()[
+                                                        selectedItemTypeIndex]
+                                                    .values
+                                                    .toList()[index])
+                                                : selectedItems.update(
+                                                    itemsType.values
+                                                        .toList()[
+                                                            selectedItemTypeIndex]
+                                                        .values
+                                                        .toList()[index],
+                                                    (value) => value - 1,
+                                                  );
+                                            selectedItemsCount == 0
+                                                ? selectedItemsCount = 0
+                                                : selectedItemsCount--;
+                                          }
+                                        },
+                                      );
+                                    },
+                                    child: Center(
+                                      child: Text(
+                                        '-',
+                                        style: TextStyle(
+                                          color: mainTextColor,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Text(
+                                  getCount(index),
+                                ),
+                                SizedBox(
+                                  height: getHeight(context, 0.04),
+                                  width: getWidth(context, 0.014),
+                                  child: TextButton(
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.resolveWith(
+                                        (states) {
+                                          if (states.contains(
+                                              MaterialState.pressed)) {
+                                            return subBackgroundColor;
+                                          }
+                                          return subBackgroundColor;
+                                        },
+                                      ),
+                                    ),
+                                    onPressed: () {
+                                      setState(
+                                        () {
+                                          selectedItems.update(
+                                            itemsType.values
+                                                .toList()[selectedItemTypeIndex]
+                                                .values
+                                                .toList()[index],
+                                            (value) => value + 1,
+                                            ifAbsent: () => 1,
+                                          );
+                                          selectedItemsCount++;
+                                        },
+                                      );
+                                    },
+                                    child: Center(
+                                      child: Text(
+                                        '+',
+                                        style: TextStyle(
+                                          color: mainTextColor,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 );
@@ -120,5 +254,18 @@ class _Desktop_Content_PageState extends State<Desktop_Content_Page> {
         ),
       ],
     );
+  }
+
+  getCount(int index) {
+    try {
+      return selectedItems.values
+          .toList()[selectedItems.keys.toList().indexOf(itemsType.values
+              .toList()[selectedItemTypeIndex]
+              .values
+              .toList()[index])]
+          .toString();
+    } catch (e) {
+      return '0';
+    }
   }
 }

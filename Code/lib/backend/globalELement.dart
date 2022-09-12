@@ -57,15 +57,16 @@ mainText(
     {required BuildContext context,
     required String str,
     double size = 0.04,
+    Color Bcolor = Colors.transparent,
     Color color = Colors.black}) {
   return Text(
     str,
     style: TextStyle(
-      fontFamily: 'BalooBhai2',
-      color: color,
-      fontWeight: FontWeight.w300,
-      fontSize: getHeight(context, size),
-    ),
+        fontFamily: 'BalooBhai2',
+        color: color,
+        fontWeight: FontWeight.w300,
+        fontSize: getHeight(context, size),
+        backgroundColor: Bcolor),
   );
 }
 

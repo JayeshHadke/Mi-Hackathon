@@ -24,7 +24,7 @@ class _Desktop_LogIn_SignUp_PageState extends State<Desktop_LogIn_SignUp_Page> {
   }
 
   setWindow() async {
-    await DesktopWindow.setMinWindowSize(const Size(900, 1000));
+    await DesktopWindow.setMinWindowSize(const Size(1400, 1000));
     await DesktopWindow.setFullScreen(true);
   }
 

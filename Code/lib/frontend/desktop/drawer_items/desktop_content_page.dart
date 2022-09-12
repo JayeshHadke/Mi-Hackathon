@@ -50,6 +50,7 @@ class _Desktop_Content_PageState extends State<Desktop_Content_Page> {
               Row(
                 children: [
                   IconButton(
+                    splashRadius: getWidth(context, 0.015),
                     onPressed: () {
                       setState(() {
                         selectedItemsCount = 0;
@@ -62,19 +63,24 @@ class _Desktop_Content_PageState extends State<Desktop_Content_Page> {
                     ),
                   ),
                   Badge(
+                    badgeContent: Text(selectedItemsCount.toString()),
+                    showBadge: selectedItemsCount == 0 ? false : true,
                     badgeColor: mainBackgroundColor,
-                    badgeContent: subText(
-                      context: context,
-                      str: selectedItemsCount.toString(),
-                    ),
                     child: IconButton(
+                      tooltip: selectedItemsCount == 0
+                          ? 'Select Items to Continue'
+                          : 'Next',
+                      splashRadius: getWidth(context, 0.015),
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => Billing_Page(),
-                          ),
-                        );
+                        if (selectedItemsCount == 0) {
+                        } else {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Billing_Page(),
+                            ),
+                          );
+                        }
                       },
                       icon: const Icon(
                         Icons.shopping_cart_rounded,
@@ -93,13 +99,15 @@ class _Desktop_Content_PageState extends State<Desktop_Content_Page> {
           height: getHeight(context, 0.01),
         ),
         Container(
-          padding: EdgeInsets.symmetric(horizontal: getWidth(context, 0.02)),
+          padding: EdgeInsets.symmetric(
+              horizontal: getWidth(context, 0.02),
+              vertical: getHeight(context, 0.02)),
           height: getHeight(context, 0.78),
           width: double.maxFinite,
           child: GridView(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 4,
-              childAspectRatio: 1,
+              childAspectRatio: 0.7,
               crossAxisSpacing: getWidth(context, 0.015),
               mainAxisSpacing: getHeight(context, 0.03),
             ),
@@ -107,8 +115,9 @@ class _Desktop_Content_PageState extends State<Desktop_Content_Page> {
               itemsType.values.toList()[selectedItemTypeIndex].length,
               (index) {
                 return Container(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: getWidth(context, 0.01)),
+                  padding: EdgeInsets.symmetric(
+                      horizontal: getWidth(context, 0.01),
+                      vertical: getHeight(context, 0.01)),
                   decoration: BoxDecoration(
                     // color: Colors.grey,
                     borderRadius: BorderRadius.circular(12),
@@ -118,7 +127,7 @@ class _Desktop_Content_PageState extends State<Desktop_Content_Page> {
                     ),
                     image: DecorationImage(
                       opacity: 0.9,
-                      scale: 1.5,
+                      fit: BoxFit.contain,
                       alignment: Alignment.topCenter,
                       image: NetworkImage(
                           itemsType.values
@@ -146,11 +155,14 @@ class _Desktop_Content_PageState extends State<Desktop_Content_Page> {
                           mainText(
                               context: context,
                               size: 0.03,
-                              str: accessoriesItems.values
-                                  .toList()[index]
-                                  .price
-                                  .toString()),
-                          SizedBox(
+                              str:
+                                  '${accessoriesItems.values.toList()[index].price.toString()} ₹'),
+                          Container(
+                            decoration: BoxDecoration(
+                              color: Colors.grey.shade100,
+                              borderRadius: BorderRadius.circular(
+                                  getWidth(context, 0.005)),
+                            ),
                             width: getWidth(context, 0.06),
                             height: getHeight(context, 0.06),
                             child: Row(
@@ -161,6 +173,8 @@ class _Desktop_Content_PageState extends State<Desktop_Content_Page> {
                                   width: getWidth(context, 0.014),
                                   child: TextButton(
                                     style: ButtonStyle(
+                                      padding: MaterialStateProperty.all(
+                                          EdgeInsets.zero),
                                       backgroundColor:
                                           MaterialStateProperty.resolveWith(
                                         (states) {
@@ -213,12 +227,10 @@ class _Desktop_Content_PageState extends State<Desktop_Content_Page> {
                                         },
                                       );
                                     },
-                                    child: Center(
-                                      child: Text(
-                                        '-',
-                                        style: TextStyle(
-                                          color: mainTextColor,
-                                        ),
+                                    child: Text(
+                                      '-',
+                                      style: TextStyle(
+                                        color: mainTextColor,
                                       ),
                                     ),
                                   ),
@@ -228,9 +240,11 @@ class _Desktop_Content_PageState extends State<Desktop_Content_Page> {
                                 ),
                                 SizedBox(
                                   height: getHeight(context, 0.04),
-                                  width: getWidth(context, 0.014),
+                                  width: getWidth(context, 0.015),
                                   child: TextButton(
                                     style: ButtonStyle(
+                                      padding: MaterialStateProperty.all(
+                                          EdgeInsets.zero),
                                       backgroundColor:
                                           MaterialStateProperty.resolveWith(
                                         (states) {
@@ -257,15 +271,7 @@ class _Desktop_Content_PageState extends State<Desktop_Content_Page> {
                                         },
                                       );
                                     },
-                                    child: Center(
-                                      child: Text(
-                                        '+',
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          color: mainTextColor,
-                                        ),
-                                      ),
-                                    ),
+                                    child: subText(context: context, str: '+'),
                                   ),
                                 ),
                               ],

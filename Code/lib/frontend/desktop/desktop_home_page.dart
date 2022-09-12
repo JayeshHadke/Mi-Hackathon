@@ -38,29 +38,28 @@ class _Desktop_Home_PageState extends State<Desktop_Home_Page> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        iconTheme: const IconThemeData(color: Colors.black),
         toolbarHeight: getHeight(context, 0.1),
         backgroundColor: subBackgroundColor,
         elevation: 5,
-        title: Container(
-          child: Row(
-            children: [
-              Image.asset(
-                'assets/images/xiaomi_logo_nolabel.png',
-                height: getHeight(context, 0.06),
-              ),
-              SizedBox(
-                width: getWidth(context, 0.01),
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  mainText(context: context, str: '$name - $posId'),
-                  subText(context: context, str: storeName),
-                ],
-              )
-            ],
-          ),
+        title: Row(
+          children: [
+            Image.asset(
+              'assets/images/xiaomi_logo_nolabel.png',
+              height: getHeight(context, 0.06),
+            ),
+            SizedBox(
+              width: getWidth(context, 0.01),
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                mainText(context: context, str: '$name - $posId'),
+                subText(context: context, str: storeName),
+              ],
+            )
+          ],
         ),
       ),
       drawer: Drawer(

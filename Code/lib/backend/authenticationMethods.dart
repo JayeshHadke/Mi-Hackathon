@@ -95,3 +95,12 @@ createUser(
 }
 
 _user? currentUser;
+
+class CustomerDetail {
+  String? firstName;
+  String? secondName;
+  int? phoneNo;
+  String? address;
+  int? pinCode;
+  String? miId;
+}

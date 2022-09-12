@@ -11,7 +11,6 @@ class Desktop_Content_Page extends StatefulWidget {
 }
 
 class _Desktop_Content_PageState extends State<Desktop_Content_Page> {
-  int selectedItemsCount = 0;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -105,22 +104,29 @@ class _Desktop_Content_PageState extends State<Desktop_Content_Page> {
               mainAxisSpacing: getHeight(context, 0.03),
             ),
             children: List.generate(
-              itemsType.values.toList().length,
+              itemsType.values.toList()[selectedItemTypeIndex].length,
               (index) {
                 return Container(
                   padding:
                       EdgeInsets.symmetric(horizontal: getWidth(context, 0.01)),
                   decoration: BoxDecoration(
                     // color: Colors.grey,
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(
+                      color: Colors.grey[300]!,
+                      width: 0.3,
+                    ),
                     image: DecorationImage(
                       opacity: 0.9,
-                      scale: 2.5,
+                      scale: 1.5,
                       alignment: Alignment.topCenter,
-                      image: NetworkImage(itemsType.values
-                          .toList()[selectedItemTypeIndex]
-                          .values
-                          .toList()[index]
-                          .url),
+                      image: NetworkImage(
+                          itemsType.values
+                              .toList()[selectedItemTypeIndex]
+                              .values
+                              .toList()[index]
+                              .url,
+                          scale: 2),
                     ),
                   ),
                   child: Column(
@@ -132,13 +138,14 @@ class _Desktop_Content_PageState extends State<Desktop_Content_Page> {
                           str: itemsType.values
                               .toList()[selectedItemTypeIndex]
                               .values
-                              .toList()[selectedItemTypeIndex]
+                              .toList()[index]
                               .name),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           mainText(
                               context: context,
+                              size: 0.03,
                               str: accessoriesItems.values
                                   .toList()[index]
                                   .price
@@ -253,6 +260,7 @@ class _Desktop_Content_PageState extends State<Desktop_Content_Page> {
                                     child: Center(
                                       child: Text(
                                         '+',
+                                        textAlign: TextAlign.center,
                                         style: TextStyle(
                                           color: mainTextColor,
                                         ),

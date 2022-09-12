@@ -14,7 +14,6 @@ class Tablet_Content_Page extends StatefulWidget {
 }
 
 class _Tablet_Content_PageState extends State<Tablet_Content_Page> {
-  int selectedItemsCount = 0;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -105,7 +104,7 @@ class _Tablet_Content_PageState extends State<Tablet_Content_Page> {
             child: GridView(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3,
-                childAspectRatio: 1.5,
+                childAspectRatio: 0.8,
                 crossAxisSpacing: getWidth(context, 0.02),
                 mainAxisSpacing: getHeight(context, 0.05),
               ),
@@ -114,7 +113,8 @@ class _Tablet_Content_PageState extends State<Tablet_Content_Page> {
                 (index) {
                   return Container(
                     padding: EdgeInsets.symmetric(
-                        horizontal: getWidth(context, 0.01)),
+                      horizontal: getWidth(context, 0.01),
+                    ),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
@@ -126,11 +126,13 @@ class _Tablet_Content_PageState extends State<Tablet_Content_Page> {
                         opacity: 0.9,
                         scale: 2.0,
                         alignment: Alignment.topCenter,
-                        image: NetworkImage(itemsType.values
-                            .toList()[selectedItemTypeIndex]
-                            .values
-                            .toList()[index]
-                            .url),
+                        image: NetworkImage(
+                            itemsType.values
+                                .toList()[selectedItemTypeIndex]
+                                .values
+                                .toList()[index]
+                                .url,
+                            scale: 3),
                       ),
                     ),
                     child: Column(
@@ -139,12 +141,11 @@ class _Tablet_Content_PageState extends State<Tablet_Content_Page> {
                       children: [
                         mainText(
                             context: context,
-                            Bcolor: Colors.white.withOpacity(0.2),
                             size: 0.03,
                             str: itemsType.values
                                 .toList()[selectedItemTypeIndex]
                                 .values
-                                .toList()[selectedItemTypeIndex]
+                                .toList()[index]
                                 .name),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -157,11 +158,8 @@ class _Tablet_Content_PageState extends State<Tablet_Content_Page> {
                                     .price
                                     .toString()),
                             SizedBox(
-                              //width: getWidth(context, 0.04),
                               height: getHeight(context, 0.04),
                               child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
                                 children: [
                                   SizedBox(
                                     height: getHeight(context, 0.03),
@@ -230,8 +228,14 @@ class _Tablet_Content_PageState extends State<Tablet_Content_Page> {
                                       ),
                                     ),
                                   ),
+                                  SizedBox(
+                                    width: getWidth(context, 0.01),
+                                  ),
                                   Text(
                                     getCount(index),
+                                  ),
+                                  SizedBox(
+                                    width: getWidth(context, 0.01),
                                   ),
                                   SizedBox(
                                     height: getHeight(context, 0.03),

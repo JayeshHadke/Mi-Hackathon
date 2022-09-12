@@ -137,12 +137,11 @@ class _Mobile_Content_PageState extends State<Mobile_Content_Page> {
                       children: [
                         mainText(
                             context: context,
-                            Bcolor: Colors.white.withOpacity(0.2),
                             size: 0.03,
                             str: itemsType.values
                                 .toList()[selectedItemTypeIndex]
                                 .values
-                                .toList()[selectedItemTypeIndex]
+                                .toList()[index]
                                 .name),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,

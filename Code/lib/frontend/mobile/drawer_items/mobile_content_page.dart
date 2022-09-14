@@ -137,7 +137,8 @@ class _Mobile_Content_PageState extends State<Mobile_Content_Page> {
                       children: [
                         mainText(
                             context: context,
-                            size: 0.03,
+                            size: 0.02,
+                            backgroundColor: Colors.white30,
                             str: itemsType.values
                                 .toList()[selectedItemTypeIndex]
                                 .values

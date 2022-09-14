@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:mi_hackathon/backend/authenticationMethods.dart';
 import 'package:mi_hackathon/backend/globalELement.dart';
+import 'package:mi_hackathon/frontend/pages/drawer_items/billing_pages/summary_page.dart';
 
 class Desktop_Billing_Page extends StatefulWidget {
   const Desktop_Billing_Page({Key? key}) : super(key: key);
@@ -11,16 +12,23 @@ class Desktop_Billing_Page extends StatefulWidget {
   State<Desktop_Billing_Page> createState() => _Desktop_Billing_PageState();
 }
 
-String firstName = '',
-    lastName = '',
-    emailId = '',
-    address = '',
-    miId = '',
-    pinCode = '',
-    phoneNo = '';
-bool check = false;
-
 class _Desktop_Billing_PageState extends State<Desktop_Billing_Page> {
+  bool check = false;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    serialNos = serialNoList();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    currentCustomer.clear();
+    serialNos = null;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,35 +49,58 @@ class _Desktop_Billing_PageState extends State<Desktop_Billing_Page> {
           ),
         ),
         actions: [
+          IconButton(
+            iconSize: getWidth(context, 0.018),
+            splashRadius: getWidth(context, 0.015),
+            onPressed: () {
+              setState(() {
+                check = false;
+                currentCustomer.clear();
+                serialNos!.clean();
+              });
+            },
+            tooltip: 'Clear',
+            icon: const Icon(
+              color: Colors.black,
+              Icons.clear_all_rounded,
+            ),
+          ),
+          SizedBox(
+            width: getWidth(context, 0.006),
+          ),
           Row(
             children: [
               TextButton(
-                  onPressed: () {
-                    setState(() {
+                onPressed: () {
+                  setState(() {
+                    if (isAllAvailable()) {
+                      Navigator.push(context, MaterialPageRoute(
+                        builder: (context) {
+                          return const Summary_Page();
+                        },
+                      ));
+                    } else {
                       check = true;
-                    });
-                  },
-                  style: ButtonStyle(
-                    overlayColor: MaterialStateProperty.all(
-                      Colors.black26.withOpacity(0.1),
+                    }
+                  });
+                },
+                child: Row(
+                  children: [
+                    const Icon(
+                      Icons.payment_rounded,
+                      color: Colors.black,
                     ),
-                  ),
-                  child: Row(
-                    children: [
-                      const Icon(
-                        Icons.payment_rounded,
-                        color: Colors.black,
-                      ),
-                      subText(context: context, str: 'Payment', size: 0.03),
-                      SizedBox(
-                        width: getWidth(context, 0.01),
-                      ),
-                      const Icon(
-                        Icons.arrow_forward_ios_rounded,
-                        color: Colors.black,
-                      ),
-                    ],
-                  )),
+                    subText(context: context, str: 'Payment', size: 0.03),
+                    SizedBox(
+                      width: getWidth(context, 0.01),
+                    ),
+                    const Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      color: Colors.black,
+                    ),
+                  ],
+                ),
+              ),
               SizedBox(
                 width: getWidth(context, 0.02),
               )
@@ -139,7 +170,7 @@ class _Desktop_Billing_PageState extends State<Desktop_Billing_Page> {
                     cursorColor: mainBackgroundColor,
                     decoration: InputDecoration(
                       errorText: check
-                          ? firstName == ''
+                          ? currentCustomer.firstName == ''
                               ? 'Fill this Field'
                               : null
                           : null,
@@ -155,7 +186,7 @@ class _Desktop_Billing_PageState extends State<Desktop_Billing_Page> {
                     onChanged: (value) {
                       setState(() {
                         check = false;
-                        firstName = value.trim();
+                        currentCustomer.firstName = value.trim();
                       });
                     },
                   ),
@@ -170,7 +201,7 @@ class _Desktop_Billing_PageState extends State<Desktop_Billing_Page> {
                     cursorColor: mainBackgroundColor,
                     decoration: InputDecoration(
                       errorText: check
-                          ? lastName == ''
+                          ? currentCustomer.lastName == ''
                               ? 'Fill this Field'
                               : null
                           : null,
@@ -186,7 +217,7 @@ class _Desktop_Billing_PageState extends State<Desktop_Billing_Page> {
                     onChanged: (value) {
                       setState(() {
                         check = false;
-                        lastName = value.trim();
+                        currentCustomer.lastName = value.trim();
                       });
                     },
                   ),
@@ -206,7 +237,7 @@ class _Desktop_Billing_PageState extends State<Desktop_Billing_Page> {
                     cursorColor: mainBackgroundColor,
                     decoration: InputDecoration(
                       errorText: check
-                          ? emailId == ''
+                          ? currentCustomer.emailId == ''
                               ? 'Fill this Field'
                               : null
                           : null,
@@ -222,7 +253,7 @@ class _Desktop_Billing_PageState extends State<Desktop_Billing_Page> {
                     onChanged: (value) {
                       setState(() {
                         check = false;
-                        emailId = value.trim();
+                        currentCustomer.emailId = value.trim();
                       });
                     },
                   ),
@@ -237,7 +268,7 @@ class _Desktop_Billing_PageState extends State<Desktop_Billing_Page> {
                     cursorColor: mainBackgroundColor,
                     decoration: InputDecoration(
                       errorText: check
-                          ? phoneNo == ''
+                          ? currentCustomer.phoneNo == ''
                               ? 'Fill this Field'
                               : null
                           : null,
@@ -253,7 +284,7 @@ class _Desktop_Billing_PageState extends State<Desktop_Billing_Page> {
                     onChanged: (value) {
                       setState(() {
                         check = false;
-                        phoneNo = value.trim();
+                        currentCustomer.phoneNo = value.trim();
                       });
                     },
                   ),
@@ -283,7 +314,7 @@ class _Desktop_Billing_PageState extends State<Desktop_Billing_Page> {
                     ),
                     onChanged: (value) {
                       setState(() {
-                        address = value.trim();
+                        currentCustomer.address = value.trim();
                       });
                     },
                   ),
@@ -308,7 +339,7 @@ class _Desktop_Billing_PageState extends State<Desktop_Billing_Page> {
                     ),
                     onChanged: (value) {
                       setState(() {
-                        pinCode = value.trim();
+                        currentCustomer.pinCode = value.trim();
                       });
                     },
                   ),
@@ -345,7 +376,7 @@ class _Desktop_Billing_PageState extends State<Desktop_Billing_Page> {
                     ),
                     onChanged: (value) {
                       setState(() {
-                        miId = value.trim();
+                        currentCustomer.miId = value.trim();
                       });
                     },
                   ),
@@ -386,7 +417,7 @@ class _Desktop_Billing_PageState extends State<Desktop_Billing_Page> {
                         horizontal: getWidth(context, 0.01),
                       ),
                       decoration: BoxDecoration(
-                        // color: Colors.grey,
+                        color: Colors.white,
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(
                           color: Colors.grey[300]!,
@@ -429,13 +460,13 @@ class _Desktop_Billing_PageState extends State<Desktop_Billing_Page> {
                                 height: getHeight(context, 0.02),
                               ),
                               SizedBox(
-                                width: getWidth(context, 0.4),
+                                width: getWidth(context, 0.3),
                                 child: Column(
                                   children: List.generate(
                                     selectedItems.values.toList()[i],
                                     (index) {
                                       return SizedBox(
-                                        width: getWidth(context, 0.3),
+                                        width: getWidth(context, 0.2),
                                         child: TextField(
                                           keyboardType:
                                               TextInputType.emailAddress,
@@ -446,6 +477,13 @@ class _Desktop_Billing_PageState extends State<Desktop_Billing_Page> {
                                                 str:
                                                     'Item ${index + 1} Serial No. ',
                                                 size: 0.025),
+                                            errorText: check
+                                                ? serialNos!.serialNo[i]
+                                                            [index] ==
+                                                        ''
+                                                    ? 'Fill this Field'
+                                                    : null
+                                                : null,
                                             enabledBorder: UnderlineInputBorder(
                                               borderSide: BorderSide(
                                                   color: mainBackgroundColor),
@@ -457,7 +495,10 @@ class _Desktop_Billing_PageState extends State<Desktop_Billing_Page> {
                                             ),
                                           ),
                                           onChanged: (value) {
-                                            setState(() {});
+                                            setState(() {
+                                              serialNos!.serialNo[i][index] =
+                                                  value.trim();
+                                            });
                                           },
                                         ),
                                       );
@@ -496,7 +537,7 @@ class _Desktop_Billing_PageState extends State<Desktop_Billing_Page> {
                               subText(
                                   context: context,
                                   str:
-                                      'Total :${(selectedItems.keys.toList()[i].price * selectedItems.values.toList()[i]).toString()} ₹',
+                                      'Total : ${(selectedItems.keys.toList()[i].price * selectedItems.values.toList()[i]).toString()} ₹',
                                   size: 0.03),
                             ],
                           )
@@ -507,12 +548,40 @@ class _Desktop_Billing_PageState extends State<Desktop_Billing_Page> {
                 ),
               ),
             ),
-            SizedBox(
-              height: getHeight(context, 0.1),
+            Divider(
+              height: getHeight(context, 0.04),
+              color: subBackgroundColor,
+              thickness: 2,
+              indent: getWidth(context, 0.015),
+              endIndent: getWidth(context, 0.015),
             ),
           ],
         ),
       ),
     );
+  }
+
+  isAllAvailable() {
+    bool temp = false;
+    try {
+      for (List<String> list in serialNos!.serialNo) {
+        for (String str in list) {
+          if (str == '') {
+            temp = true;
+            break;
+          }
+        }
+      }
+    } catch (e) {
+      temp = true;
+    }
+
+    return (currentCustomer.firstName == '' ||
+            currentCustomer.lastName == '' ||
+            currentCustomer.phoneNo == '' ||
+            currentCustomer.emailId == '' ||
+            temp)
+        ? false
+        : true;
   }
 }

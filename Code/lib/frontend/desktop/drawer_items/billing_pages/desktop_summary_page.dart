@@ -391,9 +391,18 @@ class _Desktop_Summary_PageState extends State<Desktop_Summary_Page> {
                       currentCustomer.clear();
                       serialNos = serialNoList();
                       reRender = true;
-                      Navigator.of(context).pop();
-                      Navigator.pop(context);
-                      setState(() {});
+                      SnackBar snackBar = SnackBar(
+                        content: subText(
+                            context: context,
+                            str: 'Payment Done!',
+                            color: Colors.white),
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      Future.delayed(const Duration(seconds: 3)).then((value) {
+                        Navigator.of(context).pop();
+                        Navigator.pop(context);
+                        setState(() {});
+                      });
                     },
                     child: Row(
                       children: [

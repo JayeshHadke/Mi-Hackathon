@@ -46,7 +46,7 @@ class _Desktop_Orders_PageState extends State<Desktop_Orders_Page> {
                         context: context,
                         size: 0.025,
                         str:
-                            'Customer Name : ${previousOrders[index].customerDetails!.firstName.toString()}',
+                            'Customer Name : ${previousOrders.reversed.toList()[index].customerDetails!.firstName.toString()}',
                       ),
                     ]),
                     Row(children: [
@@ -54,7 +54,7 @@ class _Desktop_Orders_PageState extends State<Desktop_Orders_Page> {
                         size: 0.025,
                         context: context,
                         str:
-                            'Customer Email : ${previousOrders[index].customerDetails!.emailId.toString()}',
+                            'Customer Email : ${previousOrders.reversed.toList()[index].customerDetails!.emailId.toString()}',
                       ),
                     ]),
                     Row(children: [
@@ -62,7 +62,7 @@ class _Desktop_Orders_PageState extends State<Desktop_Orders_Page> {
                         size: 0.025,
                         context: context,
                         str:
-                            'Customer Phone No. : ${previousOrders[index].customerDetails!.phoneNo.toString()}',
+                            'Customer Phone No. : ${previousOrders.reversed.toList()[index].customerDetails!.phoneNo.toString()}',
                       ),
                     ]),
                     Row(
@@ -81,7 +81,7 @@ class _Desktop_Orders_PageState extends State<Desktop_Orders_Page> {
                                 context: context,
                                 size: 0.025,
                                 str:
-                                    ' ${previousOrders[index].items.keys.toList()[i].name} (${previousOrders[index].items.keys.toList()[i].price.toString()}₹) X ${previousOrders[index].items.values.toList()[i].toString()} ');
+                                    ' ${previousOrders.reversed.toList()[index].items.keys.toList()[i].name} (${previousOrders.reversed.toList()[index].items.keys.toList()[i].price.toString()}₹) X ${previousOrders.reversed.toList()[index].items.values.toList()[i].toString()} ');
                           }),
                         ),
                         Column(
@@ -92,7 +92,7 @@ class _Desktop_Orders_PageState extends State<Desktop_Orders_Page> {
                                   context: context,
                                   size: 0.025,
                                   str:
-                                      '  -   ${previousOrders[index].items.keys.toList()[i].price * previousOrders[index].items.values.toList()[i]}₹');
+                                      '  -   ${previousOrders.reversed.toList()[index].items.keys.toList()[i].price * previousOrders.reversed.toList()[index].items.values.toList()[i]}₹');
                             },
                           ),
                         ),
@@ -103,7 +103,15 @@ class _Desktop_Orders_PageState extends State<Desktop_Orders_Page> {
                         size: 0.025,
                         context: context,
                         str:
-                            'Payment Type : ${previousOrders[index].payment.name}',
+                            'Payment Type : ${previousOrders.reversed.toList()[index].payment.name}',
+                      ),
+                    ]),
+                    Row(children: [
+                      subText(
+                        size: 0.025,
+                        context: context,
+                        str:
+                            'Payment Id : ${previousOrders.reversed.toList()[index].orderId.toString()}',
                       ),
                     ]),
                     Row(
@@ -112,7 +120,7 @@ class _Desktop_Orders_PageState extends State<Desktop_Orders_Page> {
                         subText(
                           context: context,
                           str:
-                              'Total Amount Paid : ${previousOrders.reversed.toList()[index].price.toString()}',
+                              'Total Amount Paid : ${previousOrders.reversed.toList()[index].price.toString()}₹ ',
                           size: 0.03,
                           fontWeight: FontWeight.bold,
                         ),

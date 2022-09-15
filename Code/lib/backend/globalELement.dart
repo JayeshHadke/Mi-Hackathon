@@ -79,6 +79,7 @@ subText(
     required String str,
     double size = 0.02,
     FontWeight fontWeight = FontWeight.normal,
+    Color color = Colors.black,
     TextAlign align = TextAlign.center}) {
   return Text(
     str,
@@ -86,7 +87,7 @@ subText(
     style: TextStyle(
       overflow: TextOverflow.fade,
       fontFamily: 'BalooBhai2',
-      color: mainTextColor,
+      color: color,
       fontSize: getHeight(context, size),
     ),
     softWrap: true,
@@ -466,6 +467,7 @@ class customer {
 }
 
 class cart {
+  int orderId;
   customer customerDetails;
   paymentTypes payment;
   String time;
@@ -483,6 +485,7 @@ class cart {
     required this.items,
     required this.price,
     this.done = true,
+    this.orderId = 0,
   });
 }
 
@@ -521,22 +524,25 @@ var previousOrders = <cart>[];
 
 addToPreviousCard(cart current_cart) {
   previousOrders.add(cart(
-      customerDetails: customer(
-          firstName: current_cart.customerDetails.firstName,
-          lastName: current_cart.customerDetails.lastName,
-          emailId: current_cart.customerDetails.emailId,
-          phoneNo: current_cart.customerDetails.phoneNo,
-          pinCode: current_cart.customerDetails.pinCode,
-          address: current_cart.customerDetails.address,
-          miId: current_cart.customerDetails.miId),
-      payment: paymentTypes.values[current_cart.payment!.index],
-      time: current_cart.time.toString(),
-      date: current_cart.date.toString(),
-      serialNo: serialNoList(),
-      items: Map.of(current_cart.items),
-      price: current_cart.price));
+    customerDetails: customer(
+        firstName: current_cart.customerDetails.firstName,
+        lastName: current_cart.customerDetails.lastName,
+        emailId: current_cart.customerDetails.emailId,
+        phoneNo: current_cart.customerDetails.phoneNo,
+        pinCode: current_cart.customerDetails.pinCode,
+        address: current_cart.customerDetails.address,
+        miId: current_cart.customerDetails.miId),
+    payment: paymentTypes.values[current_cart.payment!.index],
+    time: current_cart.time.toString(),
+    date: current_cart.date.toString(),
+    serialNo: serialNoList(),
+    items: Map.of(current_cart.items),
+    price: current_cart.price,
+    orderId: orderNo++,
+  ));
 }
 
 serialNoList? serialNos;
 
 bool reRender = false;
+int orderNo = 10000;

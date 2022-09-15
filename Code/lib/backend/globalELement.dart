@@ -466,22 +466,24 @@ class customer {
 }
 
 class cart {
-  customer? customerDetails;
-  paymentTypes? payment;
-  String? time;
-  String? date;
+  customer customerDetails;
+  paymentTypes payment;
+  String time;
+  String date;
   serialNoList serialNo;
   Map<_item, int> items;
   double price;
-  bool? done;
-  cart(
-      {required this.customerDetails,
-      required this.payment,
-      required this.time,
-      required this.date,
-      required this.serialNo,
-      required this.items,
-      required this.price});
+  bool done;
+  cart({
+    required this.customerDetails,
+    required this.payment,
+    required this.time,
+    required this.date,
+    required this.serialNo,
+    required this.items,
+    required this.price,
+    this.done = true,
+  });
 }
 
 customer currentCustomer = customer(
@@ -505,6 +507,7 @@ class serialNoList {
       );
     },
   );
+
   clean() {
     for (List<String> list in serialNo) {
       for (int i = 0; i < list.length; i++) {
@@ -515,4 +518,25 @@ class serialNoList {
 }
 
 var previousOrders = <cart>[];
+
+addToPreviousCard(cart current_cart) {
+  previousOrders.add(cart(
+      customerDetails: customer(
+          firstName: current_cart.customerDetails.firstName,
+          lastName: current_cart.customerDetails.lastName,
+          emailId: current_cart.customerDetails.emailId,
+          phoneNo: current_cart.customerDetails.phoneNo,
+          pinCode: current_cart.customerDetails.pinCode,
+          address: current_cart.customerDetails.address,
+          miId: current_cart.customerDetails.miId),
+      payment: paymentTypes.values[current_cart.payment!.index],
+      time: current_cart.time.toString(),
+      date: current_cart.date.toString(),
+      serialNo: serialNoList(),
+      items: Map.of(current_cart.items),
+      price: current_cart.price));
+}
+
 serialNoList? serialNos;
+
+bool reRender = false;

@@ -362,7 +362,7 @@ class _Desktop_Summary_PageState extends State<Desktop_Summary_Page> {
                     }).toList(),
                     onChanged: (value) {
                       setState(() {
-                        currentCart.payment = value;
+                        currentCart.payment = value!;
                       });
                     },
                   ),
@@ -373,13 +373,27 @@ class _Desktop_Summary_PageState extends State<Desktop_Summary_Page> {
                 SizedBox(
                   height: getHeight(context, 0.06),
                   child: ElevatedButton(
-                    style: ButtonStyle(backgroundColor:
-                        MaterialStateProperty.resolveWith((states) {
-                      return mainBackgroundColor.withOpacity(0.8);
-                    })),
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.resolveWith(
+                        (states) {
+                          return mainBackgroundColor.withOpacity(0.8);
+                        },
+                      ),
+                    ),
                     onPressed: () {
+                      currentCart.date =
+                          DateTime.now().toString().split(' ')[0];
+                      currentCart.time =
+                          DateTime.now().toString().split(' ')[1].split('.')[0];
+                      addToPreviousCard(currentCart);
+                      selectedItemsCount = 0;
+                      selectedItems.clear();
+                      currentCustomer.clear();
+                      serialNos = serialNoList();
+                      reRender = true;
+                      Navigator.of(context).pop();
                       Navigator.pop(context);
-                      Navigator.pop(context);
+                      setState(() {});
                     },
                     child: Row(
                       children: [

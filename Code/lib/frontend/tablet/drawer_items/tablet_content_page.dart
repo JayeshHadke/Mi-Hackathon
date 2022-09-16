@@ -132,7 +132,7 @@ class _Tablet_Content_PageState extends State<Tablet_Content_Page> {
                                 .values
                                 .toList()[index]
                                 .url,
-                            scale: 3),
+                            scale: 1),
                       ),
                     ),
                     child: Column(

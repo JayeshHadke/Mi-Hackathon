@@ -46,7 +46,7 @@ class _Desktop_Orders_PageState extends State<Desktop_Orders_Page> {
                         context: context,
                         size: 0.025,
                         str:
-                            'Customer Name : ${previousOrders.reversed.toList()[index].customerDetails!.firstName.toString()}',
+                            'Customer Name : ${previousOrders.reversed.toList()[index].customerDetails.firstName.toString()}',
                       ),
                     ]),
                     Row(children: [

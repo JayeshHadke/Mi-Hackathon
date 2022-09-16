@@ -532,7 +532,7 @@ addToPreviousCard(cart current_cart) {
         pinCode: current_cart.customerDetails.pinCode,
         address: current_cart.customerDetails.address,
         miId: current_cart.customerDetails.miId),
-    payment: paymentTypes.values[current_cart.payment!.index],
+    payment: paymentTypes.values[current_cart.payment.index],
     time: current_cart.time.toString(),
     date: current_cart.date.toString(),
     serialNo: serialNoList(),

@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:mi_hackathon/backend/globalELement.dart';

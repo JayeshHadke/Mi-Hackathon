@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:mi_hackathon/backend/globalELement.dart';
@@ -79,6 +81,13 @@ class _Desktop_Content_PageState extends State<Desktop_Content_Page> {
                             MaterialPageRoute(
                               builder: (context) => const Billing_Page(),
                             ),
+                          ).then(
+                            (value) {
+                              if (reRender) {
+                                setState(() {});
+                                reRender = false;
+                              }
+                            },
                           );
                         }
                       },

@@ -58,10 +58,11 @@ mainText(
     required String str,
     double size = 0.04,
     Color backgroundColor = Colors.transparent,
-    Color color = Colors.black}) {
+    Color color = Colors.black,
+    TextAlign align = TextAlign.center}) {
   return Text(
     str,
-    textAlign: TextAlign.center,
+    textAlign: align,
     style: TextStyle(
         fontFamily: 'BalooBhai2',
         color: color,
@@ -77,14 +78,16 @@ subText(
     {required BuildContext context,
     required String str,
     double size = 0.02,
-    FontWeight fontWeight = FontWeight.normal}) {
+    FontWeight fontWeight = FontWeight.normal,
+    Color color = Colors.black,
+    TextAlign align = TextAlign.center}) {
   return Text(
     str,
-    textAlign: TextAlign.center,
+    textAlign: align,
     style: TextStyle(
       overflow: TextOverflow.fade,
       fontFamily: 'BalooBhai2',
-      color: mainTextColor,
+      color: color,
       fontSize: getHeight(context, size),
     ),
     softWrap: true,
@@ -422,3 +425,124 @@ var accessoriesItems = <String, _item>{
       name: 'Car Charger',
       price: 99)
 };
+
+enum paymentTypes {
+  Cash,
+  UPI,
+  Card,
+}
+
+var paymentTypesList = [
+  'Cash',
+  'UPI',
+  'Card',
+];
+
+class customer {
+  String? firstName;
+  String? lastName;
+  String? emailId;
+  String? phoneNo;
+  String? address;
+  String? pinCode;
+  String? miId;
+  customer({
+    required this.firstName,
+    required this.lastName,
+    required this.emailId,
+    required this.phoneNo,
+    this.miId = '',
+    this.pinCode = '',
+    this.address = '',
+  });
+  clear() {
+    firstName = '';
+    lastName = '';
+    emailId = '';
+    phoneNo = '';
+    address = '';
+    pinCode = '';
+    miId = '';
+  }
+}
+
+class cart {
+  int orderId;
+  customer customerDetails;
+  paymentTypes payment;
+  String time;
+  String date;
+  serialNoList serialNo;
+  Map<_item, int> items;
+  double price;
+  bool done;
+  cart({
+    required this.customerDetails,
+    required this.payment,
+    required this.time,
+    required this.date,
+    required this.serialNo,
+    required this.items,
+    required this.price,
+    this.done = true,
+    this.orderId = 0,
+  });
+}
+
+customer currentCustomer = customer(
+    firstName: '',
+    lastName: '',
+    emailId: '',
+    phoneNo: '',
+    address: '',
+    miId: '',
+    pinCode: '');
+
+class serialNoList {
+  List<List<String>> serialNo = List.generate(
+    selectedItems.length,
+    (i) {
+      return List.generate(
+        selectedItems.values.toList()[i],
+        (index) {
+          return '';
+        },
+      );
+    },
+  );
+
+  clean() {
+    for (List<String> list in serialNo) {
+      for (int i = 0; i < list.length; i++) {
+        list[i] = '';
+      }
+    }
+  }
+}
+
+var previousOrders = <cart>[];
+
+addToPreviousCard(cart current_cart) {
+  previousOrders.add(cart(
+    customerDetails: customer(
+        firstName: current_cart.customerDetails.firstName,
+        lastName: current_cart.customerDetails.lastName,
+        emailId: current_cart.customerDetails.emailId,
+        phoneNo: current_cart.customerDetails.phoneNo,
+        pinCode: current_cart.customerDetails.pinCode,
+        address: current_cart.customerDetails.address,
+        miId: current_cart.customerDetails.miId),
+    payment: paymentTypes.values[current_cart.payment!.index],
+    time: current_cart.time.toString(),
+    date: current_cart.date.toString(),
+    serialNo: serialNoList(),
+    items: Map.of(current_cart.items),
+    price: current_cart.price,
+    orderId: orderNo++,
+  ));
+}
+
+serialNoList? serialNos;
+
+bool reRender = false;
+int orderNo = 10000;

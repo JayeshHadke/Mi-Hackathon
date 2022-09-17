@@ -51,7 +51,7 @@ class _Mobile_Home_PageState extends State<Mobile_Home_Page> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  mainText(context: context, str: '$name - $posId'),
+                  mainText(context: context, str: '$name - $posId', size: 0.03),
                   subText(context: context, str: storeName),
                 ],
               )

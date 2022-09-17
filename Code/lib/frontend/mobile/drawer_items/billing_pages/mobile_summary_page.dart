@@ -50,19 +50,6 @@ class _Mobile_Summary_PageState extends State<Mobile_Summary_Page> {
               'assets/images/xiaomi_logo_nolabel.png',
               height: getHeight(context, 0.06),
             ),
-            SizedBox(
-              width: getWidth(context, 0.01),
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                mainText(
-                    context: context,
-                    str: '${currentUser!.name} - ${currentUser!.posId}'),
-                subText(context: context, str: currentUser!.storeName),
-              ],
-            )
           ],
         ),
       ),
@@ -73,11 +60,9 @@ class _Mobile_Summary_PageState extends State<Mobile_Summary_Page> {
               height: getHeight(context, 0.01),
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(
-                  width: getWidth(context, 0.02),
-                ),
-                mainText(context: context, str: 'Summary', size: 0.05),
+                mainText(context: context, str: 'Summary', size: 0.045),
               ],
             ),
             Divider(
@@ -88,88 +73,101 @@ class _Mobile_Summary_PageState extends State<Mobile_Summary_Page> {
               endIndent: getWidth(context, 0.015),
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(
-                  width: getWidth(context, 0.25),
-                  height: getHeight(context, 0.05),
-                ),
-                mainText(
-                    context: context, str: 'Customer Details', size: 0.043),
+                mainText(context: context, str: 'Customer Details', size: 0.04),
               ],
             ),
-            Row(
+            Column(
               children: [
-                SizedBox(
-                  width: getWidth(context, 0.02),
-                ),
-                mainText(
-                    context: context,
-                    str:
-                        'Customer Full Name : ${currentCustomer.firstName} ${currentCustomer.lastName}',
-                    size: 0.03),
-              ],
-            ),
-            Row(
-              children: [
-                SizedBox(
-                  width: getWidth(context, 0.02),
-                ),
-                mainText(
-                    context: context,
-                    str: 'Customer Email : ${currentCustomer.emailId} ',
-                    size: 0.03),
-              ],
-            ),
-            Row(
-              children: [
-                SizedBox(
-                  width: getWidth(context, 0.02),
-                ),
-                mainText(
-                    context: context,
-                    str: 'Customer Phone No.  : ${currentCustomer.emailId} ',
-                    size: 0.03),
-              ],
-            ),
-            currentCustomer.address != ''
-                ? Row(
-                    children: [
-                      SizedBox(
-                        width: getWidth(context, 0.02),
-                      ),
-                      mainText(
+                Row(
+                  children: [
+                    SizedBox(
+                      width: getWidth(context, 0.02),
+                    ),
+                    Expanded(
+                      child: mainText(
                           context: context,
-                          str: 'Address : ${currentCustomer.emailId} ',
-                          size: 0.03),
-                    ],
-                  )
-                : const SizedBox(),
-            currentCustomer.pinCode != ''
-                ? Row(
-                    children: [
-                      SizedBox(
-                        width: getWidth(context, 0.02),
-                      ),
-                      mainText(
+                          str:
+                              'Customer Full Name : ${currentCustomer.firstName} ${currentCustomer.lastName}',
+                          size: 0.025),
+                    )
+                  ],
+                ),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: getWidth(context, 0.02),
+                    ),
+                    Expanded(
+                      child: mainText(
                           context: context,
-                          str: 'PinCode : ${currentCustomer.emailId} ',
-                          size: 0.03),
-                    ],
-                  )
-                : const SizedBox(),
-            currentCustomer.miId != ''
-                ? Row(
-                    children: [
-                      SizedBox(
-                        width: getWidth(context, 0.02),
-                      ),
-                      mainText(
+                          str: 'Customer Email : ${currentCustomer.emailId} ',
+                          size: 0.025),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: getWidth(context, 0.02),
+                    ),
+                    Expanded(
+                      child: mainText(
                           context: context,
-                          str: 'Mi Id : ${currentCustomer.emailId} ',
-                          size: 0.03),
-                    ],
-                  )
-                : const SizedBox(),
+                          str:
+                              'Customer Phone No.  : ${currentCustomer.emailId} ',
+                          size: 0.025),
+                    ),
+                  ],
+                ),
+                currentCustomer.address != ''
+                    ? Row(
+                        children: [
+                          SizedBox(
+                            width: getWidth(context, 0.02),
+                          ),
+                          Expanded(
+                            child: mainText(
+                                context: context,
+                                str: 'Address : ${currentCustomer.emailId} ',
+                                size: 0.025),
+                          ),
+                        ],
+                      )
+                    : const SizedBox(),
+                currentCustomer.pinCode != ''
+                    ? Row(
+                        children: [
+                          SizedBox(
+                            width: getWidth(context, 0.02),
+                          ),
+                          Expanded(
+                            child: mainText(
+                                context: context,
+                                str: 'PinCode : ${currentCustomer.emailId} ',
+                                size: 0.025),
+                          ),
+                        ],
+                      )
+                    : const SizedBox(),
+                currentCustomer.miId != ''
+                    ? Row(
+                        children: [
+                          SizedBox(
+                            width: getWidth(context, 0.02),
+                          ),
+                          Expanded(
+                            child: mainText(
+                                context: context,
+                                str: 'Mi Id : ${currentCustomer.emailId} ',
+                                size: 0.025),
+                          ),
+                        ],
+                      )
+                    : const SizedBox(),
+              ],
+            ),
             Divider(
               height: getHeight(context, 0.05),
               color: subBackgroundColor,
@@ -178,11 +176,8 @@ class _Mobile_Summary_PageState extends State<Mobile_Summary_Page> {
               endIndent: getWidth(context, 0.015),
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(
-                  width: getWidth(context, 0.02),
-                  height: getHeight(context, 0.09),
-                ),
                 mainText(context: context, str: 'Order Details', size: 0.04),
               ],
             ),
@@ -190,11 +185,11 @@ class _Mobile_Summary_PageState extends State<Mobile_Summary_Page> {
               padding: EdgeInsets.symmetric(
                   horizontal: getWidth(context, 0.02),
                   vertical: getHeight(context, 0.02)),
-              height: getHeight(context, 0.78),
+              height: getHeight(context, 0.6),
               width: double.maxFinite,
               child: GridView(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2, childAspectRatio: 0.70),
+                      crossAxisCount: 2, childAspectRatio: 0.6),
                   children: List.generate(
                     selectedItems.length,
                     (i) {
@@ -235,7 +230,7 @@ class _Mobile_Summary_PageState extends State<Mobile_Summary_Page> {
                                 context: context,
                                 str:
                                     'Total : ${selectedItems.values.toList()[i] * selectedItems.keys.toList()[i].price}₹ ',
-                                size: 0.035,
+                                size: 0.03,
                               ),
                             ]),
                       );
@@ -253,11 +248,8 @@ class _Mobile_Summary_PageState extends State<Mobile_Summary_Page> {
               endIndent: getWidth(context, 0.015),
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(
-                  width: getWidth(context, 0.02),
-                  height: getHeight(context, 0.1),
-                ),
                 mainText(context: context, str: 'Payment Summary', size: 0.04),
               ],
             ),
@@ -270,9 +262,6 @@ class _Mobile_Summary_PageState extends State<Mobile_Summary_Page> {
                     children: [
                       Row(
                         children: [
-                          SizedBox(
-                            width: getWidth(context, 0.02),
-                          ),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -402,7 +391,7 @@ class _Mobile_Summary_PageState extends State<Mobile_Summary_Page> {
                               color: Colors.white),
                         );
                         ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                        Future.delayed(const Duration(seconds: 3))
+                        Future.delayed(const Duration(seconds: 1))
                             .then((value) {
                           Navigator.of(context).pop();
                           Navigator.pop(context);

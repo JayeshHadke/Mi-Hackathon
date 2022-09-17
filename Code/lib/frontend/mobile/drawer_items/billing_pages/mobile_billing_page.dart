@@ -114,19 +114,6 @@ class _Mobile_Billing_PageState extends State<Mobile_Billing_Page> {
               'assets/images/xiaomi_logo_nolabel.png',
               height: getHeight(context, 0.06),
             ),
-            SizedBox(
-              width: getWidth(context, 0.01),
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                mainText(
-                    context: context,
-                    str: '${currentUser!.name} - ${currentUser!.posId}'),
-                subText(context: context, str: currentUser!.storeName),
-              ],
-            )
           ],
         ),
       ),
@@ -430,12 +417,13 @@ class _Mobile_Billing_PageState extends State<Mobile_Billing_Page> {
                         vertical: getHeight(context, 0.02),
                         horizontal: getWidth(context, 0.02),
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Flexible(
-                            child: Column(
+                      child: SizedBox(
+                        // height: getHeight(context, 0.5),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 SizedBox(
@@ -451,99 +439,110 @@ class _Mobile_Billing_PageState extends State<Mobile_Billing_Page> {
                                     str: selectedItems.keys.toList()[i].name),
                               ],
                             ),
-                          ),
-                          Column(
-                            children: [
-                              subText(
-                                  context: context,
-                                  str: 'Please Enter All Items Serial Number',
-                                  size: 0.03),
-                              SizedBox(
-                                height: getHeight(context, 0.02),
-                              ),
-                              SizedBox(
-                                width: getWidth(context, 0.3),
-                                child: Column(
-                                  children: List.generate(
-                                    selectedItems.values.toList()[i],
-                                    (index) {
-                                      return SizedBox(
-                                        width: getWidth(context, 0.2),
-                                        child: TextField(
-                                          keyboardType:
-                                              TextInputType.emailAddress,
-                                          cursorColor: mainBackgroundColor,
-                                          decoration: InputDecoration(
-                                            label: subText(
-                                                context: context,
-                                                str:
-                                                    'Item ${index + 1} Serial No. ',
-                                                size: 0.025),
-                                            errorText: check
-                                                ? serialNos!.serialNo[i]
-                                                            [index] ==
-                                                        ''
-                                                    ? 'Fill this Field'
-                                                    : null
-                                                : null,
-                                            enabledBorder: UnderlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  color: mainBackgroundColor),
-                                            ),
-                                            focusedBorder:
-                                                const UnderlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  color: Colors.white),
-                                            ),
-                                          ),
-                                          onChanged: (value) {
-                                            setState(() {
-                                              serialNos!.serialNo[i][index] =
-                                                  value.trim();
-                                            });
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  children: [
+                                    subText(
+                                        context: context,
+                                        str:
+                                            'Please Enter All Items \n Serial Number',
+                                        size: 0.02),
+                                    SizedBox(
+                                      height: getHeight(context, 0.02),
+                                    ),
+                                    SizedBox(
+                                      width: getWidth(context, 0.3),
+                                      child: Column(
+                                        children: List.generate(
+                                          selectedItems.values.toList()[i],
+                                          (index) {
+                                            return SizedBox(
+                                              width: getWidth(context, 0.3),
+                                              child: TextField(
+                                                keyboardType:
+                                                    TextInputType.emailAddress,
+                                                cursorColor:
+                                                    mainBackgroundColor,
+                                                decoration: InputDecoration(
+                                                  label: subText(
+                                                      context: context,
+                                                      str:
+                                                          'Item ${index + 1} Serial No. ',
+                                                      size: 0.02),
+                                                  errorText: check
+                                                      ? serialNos!.serialNo[i]
+                                                                  [index] ==
+                                                              ''
+                                                          ? 'Fill this Field'
+                                                          : null
+                                                      : null,
+                                                  enabledBorder:
+                                                      UnderlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        color:
+                                                            mainBackgroundColor),
+                                                  ),
+                                                  focusedBorder:
+                                                      const UnderlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        color: Colors.white),
+                                                  ),
+                                                ),
+                                                onChanged: (value) {
+                                                  setState(() {
+                                                    serialNos!.serialNo[i]
+                                                        [index] = value.trim();
+                                                  });
+                                                },
+                                              ),
+                                            );
                                           },
                                         ),
-                                      );
-                                    },
-                                  ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ),
-                            ],
-                          ),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              subText(
-                                  context: context,
-                                  str: 'Price Summary',
-                                  size: 0.03),
-                              SizedBox(
-                                height: getHeight(context, 0.02),
-                              ),
-                              SizedBox(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: List.generate(
-                                    selectedItems.values.toList()[i],
-                                    (index) {
-                                      return subText(
-                                          context: context,
-                                          str:
-                                              '${selectedItems.keys.toList()[i].price.toString()} ₹',
-                                          size: 0.03,
-                                          fontWeight: FontWeight.w400);
-                                    },
-                                  ),
-                                ),
-                              ),
-                              subText(
-                                  context: context,
-                                  str:
-                                      'Total : ${(selectedItems.keys.toList()[i].price * selectedItems.values.toList()[i]).toString()} ₹',
-                                  size: 0.03),
-                            ],
-                          )
-                        ],
+                                Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    subText(
+                                        context: context,
+                                        str: 'Price Summary',
+                                        size: 0.03),
+                                    SizedBox(
+                                      height: getHeight(context, 0.02),
+                                    ),
+                                    SizedBox(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: List.generate(
+                                          selectedItems.values.toList()[i],
+                                          (index) {
+                                            return subText(
+                                                context: context,
+                                                str:
+                                                    '${selectedItems.keys.toList()[i].price.toString()} ₹',
+                                                size: 0.03,
+                                                fontWeight: FontWeight.w400);
+                                          },
+                                        ),
+                                      ),
+                                    ),
+                                    subText(
+                                        context: context,
+                                        str:
+                                            'Total : ${(selectedItems.keys.toList()[i].price * selectedItems.values.toList()[i]).toString()} ₹',
+                                        size: 0.03),
+                                  ],
+                                )
+                              ],
+                            )
+                          ],
+                        ),
                       ),
                     );
                   },

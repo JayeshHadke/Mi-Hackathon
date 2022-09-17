@@ -65,55 +65,66 @@ class _Desktop_Orders_PageState extends State<Desktop_Orders_Page> {
                             'Customer Phone No. : ${previousOrders.reversed.toList()[index].customerDetails!.phoneNo.toString()}',
                       ),
                     ]),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        subText(
-                          size: 0.025,
-                          context: context,
-                          str: 'Items Brought : ',
-                        ),
-                        Column(
-                          children: List.generate(
-                              previousOrders[index].items.length, (i) {
-                            return subText(
-                                context: context,
-                                size: 0.025,
-                                str:
-                                    ' ${previousOrders.reversed.toList()[index].items.keys.toList()[i].name} (${previousOrders.reversed.toList()[index].items.keys.toList()[i].price.toString()}₹) X ${previousOrders.reversed.toList()[index].items.values.toList()[i].toString()} ');
-                          }),
-                        ),
-                        Column(
-                          children: List.generate(
-                            previousOrders[index].items.length,
-                            (i) {
-                              return subText(
-                                  context: context,
-                                  size: 0.025,
-                                  str:
-                                      '  -   ${previousOrders.reversed.toList()[index].items.keys.toList()[i].price * previousOrders.reversed.toList()[index].items.values.toList()[i]}₹');
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(children: [
-                      subText(
-                        size: 0.025,
-                        context: context,
-                        str:
-                            'Payment Type : ${previousOrders.reversed.toList()[index].payment.name}',
-                      ),
-                    ]),
-                    Row(children: [
-                      subText(
-                        size: 0.025,
-                        context: context,
-                        str:
-                            'Payment Id : ${previousOrders.reversed.toList()[index].orderId.toString()}',
-                      ),
-                    ]),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.start,
+                    //   crossAxisAlignment: CrossAxisAlignment.start,
+                    //   children: [
+                    //     subText(
+                    //       size: 0.025,
+                    //       context: context,
+                    //       str: 'Items Brought : ',
+                    //     ),
+                    //     Column(
+                    //       children: List.generate(
+                    //           previousOrders[index].items.length, (i) {
+                    //         print('index ${index} : ${previousOrders.length}');
+                    //         print(
+                    //             'i ${i} : ${previousOrders.reversed.toList()[1].items.length}');
+                    //         print(
+                    //             '${previousOrders.reversed.toList()[index].items.keys.toList()[i].price}');
+                    //
+                    //         print(
+                    //             '========index=1    i=1 ===${previousOrders.reversed.toList()[1].items.length}============');
+                    //
+                    //         return subText(
+                    //             context: context,
+                    //             size: 0.025,
+                    //             str:
+                    //                 '${previousOrders.reversed.toList()[index].items.keys.toList()[i].name} (${previousOrders.reversed.toList()[index].items.keys.toList()[i].price.toString()}₹) X ${previousOrders.reversed.toList()[index].items.values.toList()[i].toString()}');
+                    //         //${previousOrders.reversed.toList()[index].items.keys.toList()[i].name} (${previousOrders.reversed.toList()[index].items.keys.toList()[i].price.toString()}₹) X ${previousOrders.reversed.toList()[index].items.values.toList()[i].toString()}
+                    //       }),
+                    //     ),
+                    //     Column(
+                    //       children: List.generate(
+                    //         previousOrders[index].items.length,
+                    //         (i) {
+                    //           return subText(
+                    //               context: context,
+                    //               size: 0.025,
+                    //               str:
+                    //                   '          ${previousOrders.reversed.toList()[index].items.keys.toList()[i].price * previousOrders.reversed.toList()[index].items.values.toList()[i]}₹');
+                    //           // ${previousOrders.reversed.toList()[index].items.keys.toList()[i].price * previousOrders.reversed.toList()[index].items.values.toList()[i]}₹
+                    //         },
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
+                    // Row(children: [
+                    //   subText(
+                    //     size: 0.025,
+                    //     context: context,
+                    //     str:
+                    //         'Payment Type : ${previousOrders.reversed.toList()[index].payment.name}',
+                    //   ),
+                    // ]),
+                    // Row(children: [
+                    //   subText(
+                    //     size: 0.025,
+                    //     context: context,
+                    //     str:
+                    //         'Payment Id : ${previousOrders.reversed.toList()[index].orderId.toString()}',
+                    //   ),
+                    // ]),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [

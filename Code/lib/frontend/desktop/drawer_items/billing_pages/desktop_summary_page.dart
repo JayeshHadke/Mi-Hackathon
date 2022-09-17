@@ -398,7 +398,7 @@ class _Desktop_Summary_PageState extends State<Desktop_Summary_Page> {
                             color: Colors.white),
                       );
                       ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                      Future.delayed(const Duration(seconds: 3)).then((value) {
+                      Future.delayed(const Duration(seconds: 1)).then((value) {
                         Navigator.of(context).pop();
                         Navigator.pop(context);
                         setState(() {});

@@ -12,7 +12,6 @@ class Mobile_Content_Page extends StatefulWidget {
 }
 
 class _Mobile_Content_PageState extends State<Mobile_Content_Page> {
-  int selectedItemsCount = 0;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -68,18 +67,30 @@ class _Mobile_Content_PageState extends State<Mobile_Content_Page> {
                   ),
                   Badge(
                     badgeColor: mainBackgroundColor,
-                    badgeContent: subText(
-                      context: context,
-                      str: selectedItemsCount.toString(),
-                    ),
+                    badgeContent: Text(selectedItemsCount.toString()),
+                    showBadge: selectedItemsCount == 0 ? false : true,
                     child: IconButton(
+                      tooltip: selectedItemsCount == 0
+                          ? 'Select Items to Continue'
+                          : 'Next',
+                      splashRadius: getWidth(context, 0.015),
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => Billing_Page(),
-                          ),
-                        );
+                        if (selectedItemsCount == 0) {
+                        } else {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Billing_Page(),
+                            ),
+                          ).then(
+                            (value) {
+                              if (reRender) {
+                                setState(() {});
+                                reRender = false;
+                              }
+                            },
+                          );
+                        }
                       },
                       icon: const Icon(
                         Icons.shopping_cart_rounded,
@@ -87,7 +98,7 @@ class _Mobile_Content_PageState extends State<Mobile_Content_Page> {
                     ),
                   ),
                   SizedBox(
-                    width: getWidth(context, 0.02),
+                    width: getWidth(context, 0.03),
                   )
                 ],
               ),
@@ -103,7 +114,7 @@ class _Mobile_Content_PageState extends State<Mobile_Content_Page> {
             child: GridView(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                childAspectRatio: 0.8,
+                childAspectRatio: 0.6,
                 crossAxisSpacing: getWidth(context, 0.02),
                 mainAxisSpacing: getHeight(context, 0.05),
               ),
@@ -152,19 +163,29 @@ class _Mobile_Content_PageState extends State<Mobile_Content_Page> {
                             mainText(
                                 context: context,
                                 size: 0.03,
-                                str: accessoriesItems.values
-                                    .toList()[index]
-                                    .price
-                                    .toString()),
-                            SizedBox(
+                                str:
+                                    '${accessoriesItems.values.toList()[index].price.toString()} ₹'),
+                            Container(
+                              width: getWidth(context, 0.16),
                               height: getHeight(context, 0.04),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 3),
+                              decoration: BoxDecoration(
+                                color: Colors.grey.shade100,
+                                borderRadius: BorderRadius.circular(
+                                    getWidth(context, 0.005)),
+                              ),
                               child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
                                   SizedBox(
                                     height: getHeight(context, 0.03),
-                                    width: getWidth(context, 0.03),
+                                    width: getWidth(context, 0.035),
                                     child: TextButton(
                                       style: ButtonStyle(
+                                        padding: MaterialStateProperty.all(
+                                            EdgeInsets.zero),
                                         backgroundColor:
                                             MaterialStateProperty.resolveWith(
                                           (states) {
@@ -217,12 +238,10 @@ class _Mobile_Content_PageState extends State<Mobile_Content_Page> {
                                           },
                                         );
                                       },
-                                      child: Center(
-                                        child: Text(
-                                          '-',
-                                          style: TextStyle(
-                                            color: mainTextColor,
-                                          ),
+                                      child: Text(
+                                        '-',
+                                        style: TextStyle(
+                                          color: mainTextColor,
                                         ),
                                       ),
                                     ),
@@ -238,9 +257,11 @@ class _Mobile_Content_PageState extends State<Mobile_Content_Page> {
                                   ),
                                   SizedBox(
                                     height: getHeight(context, 0.03),
-                                    width: getWidth(context, 0.03),
+                                    width: getWidth(context, 0.035),
                                     child: TextButton(
                                       style: ButtonStyle(
+                                        padding: MaterialStateProperty.all(
+                                            EdgeInsets.zero),
                                         backgroundColor:
                                             MaterialStateProperty.resolveWith(
                                           (states) {
@@ -268,12 +289,10 @@ class _Mobile_Content_PageState extends State<Mobile_Content_Page> {
                                           },
                                         );
                                       },
-                                      child: Center(
-                                        child: Text(
-                                          '+',
-                                          style: TextStyle(
-                                            color: mainTextColor,
-                                          ),
+                                      child: Text(
+                                        '+',
+                                        style: TextStyle(
+                                          color: mainTextColor,
                                         ),
                                       ),
                                     ),
